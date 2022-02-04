@@ -1,0 +1,57 @@
+<%- include("../partials/header.ejs") %>
+    <%- include("../partials/sidebaradmin") %>
+        <div id="layoutSidenav_content">
+            <main>
+                <div class="container-fluid">
+                    <h3 class="mt-3 mx-5">Dashboard</h1>
+                        <hr/>
+                        <div class="container">
+                            <div class="row">
+                                <table class="table table-bordered">
+                                    <tr>
+                                        <th>Name</th>
+                                        <th>Phone no</th>
+                                        <th>Address</th>
+                                        <th>Reason</th>
+                                        <th>Assign date</th>
+                                        <th>Assign worker</th>
+                                        <th>Edit</th>
+                                    </tr>
+                                    <% requests.forEach(function(requ){ %>
+                                        <tr>
+                                            <td>
+                                                <%= requ.name %>
+                                            </td>
+                                            <td>
+                                                <%= requ.phoneno%>
+                                            </td>
+                                            <td>
+                                                <%= requ.address %>
+                                            </td>
+                                            <td>
+                                                <%=requ.reason %>
+                                            </td>
+                                            <td>
+                                                <%= requ.assignDate%>
+                                            </td>
+                                            <td>
+                                                <%= requ.assignWorker%>
+                                            </td>
+
+                                            <td>
+                                                <a href="/admin/<%=requ._id%>/edit">+</a>
+                                            </td>
+                                            <td>
+                                                <a href="/admin/send/<%= requ._id %>">M</a>
+                                        </tr>
+                                        <% }) %>
+                                </table>
+
+                            </div>
+
+                        </div>
+                </div>
+        </div>
+        </main>
+
+        <%- include("../partials/footer") %>

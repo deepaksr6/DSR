@@ -1,0 +1,117 @@
+<%- include("../partials/header.ejs") %>
+    <%- include("../partials/sidebaradmin") %>
+        <html ng-app="AngularChartExample">
+
+        <head>
+            <title>Chart</title>
+        </head>
+
+        <body>
+            <div id="layoutSidenav_content">
+
+                <div class="container-fluid mb-0 pb-0">
+                    <h1 class="mt-4">Stats</h1>
+                    <hr>
+                    <div class="row">
+                        <div class="col-xl-3 col-md-6">
+                            <div class="card  text-white mb-4" style="background-color: #7cb5ec;">
+                                <div class="card-body">
+                                    <div id="total">
+                                        <%= chart.total %>
+                                    </div>
+                                </div>
+                                <div class="card-footer d-flex align-items-center justify-content-between">
+                                    <div class="small text-white">Total Requests</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xl-3 col-md-6">
+                            <div class="card  text-white mb-4" style="background-color: #434348;">
+                                <div class="card-body">
+                                    <div id="pending">
+                                        <%= chart.pending %>
+                                    </div>
+                                </div>
+                                <div class="card-footer d-flex align-items-center justify-content-between">
+                                    <div class="small text-white">Pending Requests</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xl-3 col-md-6">
+                            <div class="card  text-white mb-4" style="background-color: #90ed7d;">
+                                <div class="card-body">
+                                    <div id="completed">
+                                        <%= chart.completed %>
+                                    </div>
+                                </div>
+                                <div class="card-footer d-flex align-items-center justify-content-between">
+                                    <div class="small text-white">Completed Requests</div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-xl-3 col-md-6">
+                            <div class="card  text-white mb-4" style="background-color: #f7a35c;">
+                                <div class="card-body">
+                                    <div id="assigned">
+                                        <%= chart.assigned %>
+                                    </div>
+                                </div>
+                                <div class="card-footer d-flex align-items-center justify-content-between">
+                                    <div class="small text-white">Assigned Requests</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+                <div>
+                    <div ng-view></div>
+                </div>
+
+
+            </div>
+
+            <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.0.3/angular.js"></script>
+            <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
+            <script src="https://code.highcharts.com/highcharts.js"></script>
+            <script src="/js/barchart.js"></script>
+            <script>
+                var total = document.getElementById('total').innerText;
+                var completed = document.getElementById('completed').innerText;
+                var pending = document.getElementById('pending').innerText;
+                var assigned = document.getElementById('assigned').innerText;
+
+                function MainCtrl($scope, $http) {
+                    var data = {
+
+                        "yData": [{
+                            "name": "Total",
+                            "data": [parseInt(total)]
+                        }, {
+                            "name": "Pending",
+                            "data": [parseInt(pending)]
+                        }, {
+                            "name": "Completed",
+                            "data": [parseInt(completed)]
+                        }, {
+                            "name": "Assigned",
+                            "data": [parseInt(assigned)]
+                        }]
+                    }
+
+                    $scope.lineChartYData = data.yData
+                    $scope.lineChartXData = data.xData
+                }
+            </script>
+            <script>
+                angular.module('AngularChartExample', ['AngularChart'], function($routeProvider, $locationProvider) {
+                    $routeProvider.when('/', {
+                        template: '<chart title="Request Analyst"  yData="lineChartYData" xName="Month" yName="Hit" subtitle=""></chart>',
+                        controller: MainCtrl
+                    })
+                })
+            </script>
+        </body>
+
+        </html>

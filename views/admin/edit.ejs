@@ -1,0 +1,33 @@
+<%- include("../partials/header.ejs") %>
+    <%- include("../partials/sidebaradmin") %>
+        <div id="layoutSidenav_content">
+            <main>
+
+                <div class="container-fluid">
+                    <h3 class="mt-4">Edit</h1>
+                        <hr/>
+
+
+                        <div class='ui main text container segment'>
+
+                            <form class='ui form' action='/admin/worker/<%=worker._id%>?_method=PUT' method='Post'>
+                                <div class='field'>
+                                    <label> Name </label>
+                                    <input type='text' name='worker[name]' value='<%=worker.name%>'>
+                                </div>
+                                <div class='field'>
+                                    <label> phoneno </label>
+                                    <input type='number' name='worker[phoneno]' value='<%=worker.phoneno%>'>
+                                </div>
+                                <div class='field'>
+                                    <label> Proffession </label>
+                                    <input type='text' name='worker[proffession]' value='<%=worker.proffession%>'>
+                                </div>
+
+                                <input class='ui red big basic button' type='submit'>
+                            </form>
+                        </div>
+
+
+            </main>
+            <%- include("../partials/footer") %>

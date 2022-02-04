@@ -1,0 +1,110 @@
+<%- include("../partials/header.ejs") %>
+    <div id="layoutSidenav">
+        <div id="layoutSidenav_nav">
+            <nav class="sb-sidenav accordion sb-sidenav-dark" id="sidenavAccordion">
+                <div class="sb-sidenav-menu">
+                    <div class="nav">
+                        <div class="sb-sidenav-menu-heading">Main</div>
+                        <a class="nav-link" href="<%= id %>/requests">
+                            <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
+                            Dashboard
+                        </a>
+                        <a class="nav-link" href="#">
+                            <div class="sb-nav-link-icon"><i class="fas fa-users"></i></div>
+                            News
+                        </a>
+
+                    </div>
+                </div>
+                <div class="sb-sidenav-footer">
+                    <div class="small">Logged in as: user</div>
+                    <p>
+
+                    </p>
+                </div>
+            </nav>
+        </div>
+        <div id="layoutSidenav_content">
+            <main>
+                <div class="container-fluid">
+                    <h3 class="mx-2"> Dashboard</h1>
+                        <hr/>
+                        <button type="button" class="btn btn-primary" data-toggle="modal" style="border-radius: 50%; width: 50px;height: 50px; position: absolute; right: 10px;bottom: 20px;" data-target="#exampleModal">
+                       <span><i class="fas fa-plus"></i></span>
+                      </button>
+
+
+                        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="exampleModalLabel">Add Request</h5>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                              </button>
+                                    </div>
+                                    <div class="modal-body ui form">
+                                        <form action='/requests' method='POST'>
+                                            <div>
+                                                <input type='text' name='blog[id]' value="<%=id%>" hidden>
+                                            </div>
+                                            <div class="field">
+                                                <label> Name </label>
+                                                <input type='text' name='blog[name]' placeholder='Enter your name'>
+                                            </div>
+                                            <div class="field">
+                                                <label> phoneno </label>
+                                                <input type='number' name='blog[phoneno]' placeholder='phoneno'>
+                                            </div>
+                                            <div class="field">
+                                                <label> address </label>
+                                                <input type='text' name='blog[address]' placeholder='address'>
+                                            </div>
+                                            <div class="field">
+                                                <label> reason </label>
+                                                <textarea name='blog[reason]'></textarea>
+                                            </div>
+                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                            <button type="submit" class="btn btn-primary">ADD</button>
+                                        </form>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+
+                            <% requests.forEach(function(requ){ %>
+
+                                <div class="card ml-4" style="width: 18rem;">
+                                    <div class="card-body">
+                                        <h3 class="card-title" style="color: black;">Request</h3>
+                                        <p class="card-text">Name:
+                                            <%= requ.name %>
+                                        </p>
+                                        <p class="card-text">Phone:
+                                            <%= requ.phoneno%>
+                                        </p>
+                                        <p class="card-text">Address:
+                                            <%= requ.address %>
+                                        </p>
+                                        <p class="card-text">Reason:
+                                            <%=requ.reason %>
+                                        </p>
+                                        <h6>Requested on:
+                                            <%= requ.created.toDateString() %>
+                                        </h6>
+                                        <a href="<%=id%>/requests/<%= requ._id %>" class="btn btn-secondary">Read More</a>
+
+
+                                    </div>
+                                </div>
+                                <% }) %>
+                        </div>
+
+                </div>
+
+        </div>
+        </main>
+        <%- include("../partials/footer") %>

@@ -1,0 +1,57 @@
+<%- include("../partials/header.ejs") %>
+    <%- include("../partials/sidebaradmin") %>
+        <div id="layoutSidenav_content">
+            <main>
+
+                <div class="container-fluid">
+                    <h3 class="mt-4">Edit</h1>
+                        <hr/>
+
+
+                        <div class="card card-body">
+                            <div class='ui main text container segment'>
+                                <div class='ui huge header'>Edit
+                                    <%=requ.name%>
+                                </div>
+                                <form class='ui form' action='/admin/<%=requ._id%>?_method=PUT' method='Post'>
+                                    <div class='field'>
+                                        <label> Name </label>
+                                        <input type='text' disabled name='blog[name]' value='<%=requ.name%>'>
+                                    </div>
+                                    <div class='field'>
+                                        <label> phoneno </label>
+                                        <input type='number' disabled name='blog[phoneno]' value='<%=requ.phoneno%>'>
+                                    </div>
+                                    <div class='field'>
+                                        <label> address </label>
+                                        <input type='text' disabled name='blog[address]' value='<%=requ.address%>'>
+                                    </div>
+                                    <div class='field'>
+                                        <label> Status </label>
+                                        <input type='text' hidden name='blog[status]' value="assigned">
+                                    </div>
+                                    <div class='field'>
+                                        <label> reason </label>
+                                        <textarea disabled name='blog[reason]'> <%=requ.reason%> </textarea>
+                                    </div>
+                                    <div class='field'>
+                                        <label> Assign date </label>
+                                        <input type='date' name='blog[assignDate]'>
+                                    </div>
+                                    <div class='field'>
+                                        <label> Assign worker </label>
+
+                                        <select name="blog[assignWorker]" id="workers">
+                                        <% worker.forEach(function(wor){ %>
+                                            <option value="<%=wor._id%>"><%=wor.name%></option>
+                                         <% })   %>
+                                    </select>
+                                    </div>
+                                    <input class='ui red big basic button' type='submit'>
+                                </form>
+                            </div>
+                        </div>
+
+
+            </main>
+            <%- include("../partials/footer") %>

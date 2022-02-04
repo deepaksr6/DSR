@@ -1,0 +1,37 @@
+<%- include("../partials/header.ejs") %>
+    <%- include("../partials/sidebar") %>
+        <div id="layoutSidenav_content">
+            <main>
+
+                <div class="container-fluid">
+                    <h3 class="mt-4 mx-2">Requests</h3>
+                    <hr/>
+                    <div class="card m-2" style="width: 18rem;">
+                        <div class="card-body">
+                            <h3 class="card-title" style="color: black;">Request</h3>
+                            <p class="card-text">Name:
+                                <%= requ.name %>
+                            </p>
+                            <p class="card-text">Phone:
+                                <%= requ.phoneno%>
+                            </p>
+                            <p class="card-text">Address:
+                                <%= requ.address %>
+                            </p>
+                            <p class="card-text">Reason:
+                                <%=requ.reason %>
+                            </p>
+                            <h6>Requested on:
+                                <%= requ.created.toDateString() %>
+                            </h6>
+                            <a href="/<%=id%>/requests/<%=requ._id%>/edit" class="btn btn-secondary">EDIT</a>
+                            <form id='delete' action='/<%=id%>/requests/<%=requ._id%>?_method=DELETE' method='POST'>
+                                <button class='btn btn-danger'> DELETE </button>
+                            </form>
+                            <a href="/<%=id%>/requests/<%= requ._id %>/complete" class="btn btn-primary">COMPLETE</a>
+
+                        </div>
+                    </div>
+
+            </main>
+            <%- include("../partials/footer") %>

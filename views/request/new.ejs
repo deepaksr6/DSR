@@ -1,0 +1,30 @@
+<%- include("./partials/header") %>
+
+    <div class='ui main text container segment'>
+        <div class='ui huge header'>New Blog</div>
+        <form class='ui form' action='/requests' method='POST'>
+            <div class='field'>
+
+                <input type='text' name='blog[id]' placeholder='Enter your name'>
+            </div>
+            <div class='field'>
+                <label> Name </label>
+                <input type='text' name='blog[name]' placeholder='Enter your name'>
+            </div>
+            <div class='field'>
+                <label> phoneno </label>
+                <input type='text' name='blog[phoneno]' placeholder='phoneno'>
+            </div>
+            <div class='field'>
+                <label> address </label>
+                <input type='text' name='blog[address]' placeholder='address'>
+            </div>
+            <div class='field'>
+                <label> reason </label>
+                <textarea name='blog[reason]'></textarea>
+            </div>
+            <input class='ui red big basic button' type='submit'>
+        </form>
+    </div>
+
+    <%- include("./partials/footer") %>
